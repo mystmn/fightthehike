@@ -164,7 +164,6 @@
         {.end}
       {.end}
 
-
       {.section categoryFilter}
       <p class="filter-heading filter-by-category">
         <a href="{collection.fullUrl}"><span>{@|safe}</span></a>
