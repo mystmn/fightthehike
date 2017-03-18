@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Site Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.js"></script>
+
+    <style>
+    .row {
+        margin-bottom: 10px;
+    }
+
+    </style>
+    <script type="text/javascript">
+        setTimeout(function() {
+            $('#myModal').modal(options);
+        }, 1000);
+        var options = {
+            "backdrop" : "static",
+            "keyboard" : "true"
+        }
+
+    </script>
+</head>
+<body>
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Sign up to help Fight The Hikes!</h4>
+            </div>
+            <div class="modal-body">
+                <!-- http://www.posttestserver.com/ -->
+                <form action="http://posttestserver.com/post.php?" method="POST" role="form" class="form-horizontal">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input class="form-control" type="text" placeholder="First Name" name="fNameInput"
+                                   required>
+                        </div>
+                        <div class="col-sm-6">
+                            <input class="form-control" type="text" placeholder="Last Name" name="lNameInput" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <input type="email" class="form-control" name="inputEmail" placeholder="Email"
+                                   data-error="That email address is invalid" required>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input class="form-control" type="text" placeholder="Street" name="streetInput" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input class="form-control" type="text" placeholder="City" name="cityInput" required>
+                        </div>
+                        <div class="col-sm-3">
+
+                            <input class="form-control" type="text" placeholder="State" name="stateInput" required>
+                        </div>
+                        <div class="col-sm-3">
+
+                            <input class="form-control" type="text" placeholder="Zipcode" name="zipInput" required>
+                        </div>
+                    </div>
+                    <div class="row" style="padding: 0 12px 0 12px;">
+                        <p><b>Disclaimer</b>: We promise we will NEVER share your information with outside parties. We
+                            will
+                            only
+                            use your
+                            information to send you alerts on how you can use your voice to stop the bailouts from the
+                            big
+                            utilities and help keep electricity rates low. By signing up you agree that the Alliance for
+                            Energy
+                            Choice has permission to send you these updates from time to time.</p>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
