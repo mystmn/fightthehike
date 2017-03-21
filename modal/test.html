@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>HTML5 Local Storage Example</title>
+
+    <!-- include Bootstrap CSS for layout -->
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="container">
+    <h1>HTML5 Local Storage Example</h1>
+
+    <form method="post" class="form-horizontal">
+        <fieldset>
+            <legend>Enquiry Form</legend>
+            <div class="control-group">
+                <label class="control-label" for="name">Name</label>
+                <div class="controls">
+                    <input class="input-xlarge" type="text" name="name" id="name" value="" maxlength="50">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="controls">
+                    <label class="checkbox">
+                        <input name="subscribe" id="subscribe" type="checkbox">
+                        Subscribe to our newsletter
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+
+        <div class="form-actions">
+            <input type="submit" name="submit" id="submit" value="Send" class="btn btn-primary">
+            <input type="submit" name="submit" id="clearsubmit" value="Clear" class="btn btn-primary">
+        </div>
+    </form>
+</div>
+
+<!-- include jQuery library -->
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+    $(document).ready(function () {
+        /*
+        * check browser supports local storage
+        */
+        if (localStorage) {
+            if (localStorage.name) {
+                $("#name").val(localStorage.name);
+            }
+            if (localStorage.subscribe === "checked") {
+                $("#subscribe").attr("checked", "checked");
+
+            }
+
+            $("input[type=text]").change(function(){
+                $this = $(this);
+                localStorage[$this.attr("name")] = $this.val();
+            });
+
+            $("input[type=checkbox]").change(function(){
+                $this = $(this);
+                localStorage[$this.attr("name")] = $this.attr("checked");
+            });
+
+            $('#clearsubmit').click( function() {
+                localStorage[test] = "go"
+                location.reload();
+            });
+        }
+    });
+</script>
+
+<!--
+ $('#non-subscribe').click( function() {
+                window.localStorage.clear();
+                location.reload();
+                return false;
+            });
+-->
+</body>
+</html>
