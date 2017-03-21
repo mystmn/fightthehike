@@ -12,7 +12,7 @@
 
 <body>
 <div class="container">
-    <h1>HTML5 Local Storage Example</h1>
+    <h2><ul id="fName"></ul></h2>
 
     <form method="post" class="form-horizontal">
         <fieldset>
@@ -44,35 +44,11 @@
 <!-- include jQuery library -->
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
-    $(document).ready(function () {
-        /*
-        * check browser supports local storage
-        */
-        if (localStorage) {
-            if (localStorage.name) {
-                $("#name").val(localStorage.name);
-            }
-            if (localStorage.subscribe === "checked") {
-                $("#subscribe").attr("checked", "checked");
-
-            }
-
-            $("input[type=text]").change(function(){
-                $this = $(this);
-                localStorage[$this.attr("name")] = $this.val();
-            });
-
-            $("input[type=checkbox]").change(function(){
-                $this = $(this);
-                localStorage[$this.attr("name")] = $this.attr("checked");
-            });
-
-            $('#clearsubmit').click( function() {
-                localStorage[test] = "go"
-                location.reload();
-            });
-        }
-    });
+$(function(){
+  if($.cookie('username')){
+    document.cookie = "username=John Doe";
+  }
+}
 </script>
 
 <!--
