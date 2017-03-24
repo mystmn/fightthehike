@@ -8,11 +8,15 @@
 
     <!-- include Bootstrap CSS for layout -->
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <script src="js.cookie.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
 
 <body>
 <div class="container">
-    <h2><ul id="fName"></ul></h2>
+    <h2>
+        <ul id="fName"></ul>
+    </h2>
 
     <form method="post" class="form-horizontal">
         <fieldset>
@@ -39,16 +43,50 @@
             <input type="submit" name="submit" id="clearsubmit" value="Clear" class="btn btn-primary">
         </div>
     </form>
+  <span class="btn btn-success input-button">
+    <span>Set Cookie</span>
+    <input id='setCookie' type='button' value='Set Cookie' onclick='setCookie()'/>
+  </span>
 </div>
-
-<!-- include jQuery library -->
-<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
-$(function(){
-  if($.cookie('username')){
-    document.cookie = "username=John Doe";
-  }
-}
+    	function log(status)
+		{
+			var span = document.getElementById('statusBar');
+
+			while(span.firstChild)
+				span.removeChild( span.firstChild );
+			span.appendChild(document.createTextNode(status));
+		}
+
+		// Name of the cookie on which all the actions will be performed.
+		var cookieName = 'ex1ck_1';
+
+		function setCookie()
+		{
+			// value to set in the cookie
+			var cookieValue = 'example1 cookie';
+
+			// sets the cookie
+			$.cookie(cookieName, cookieValue);
+			log('Cookie ' + cookieName + ' has been set.');
+		}
+		function getCookie()
+		{
+			// gets the cookie value if cookie is accessible from the current page
+			var cookieValue = $.cookie(cookieName);
+			log(cookieName + ' = \'' + cookieValue + '\'');
+		}
+		function removeCookie()
+		{
+			// Remove the cookie
+			// It won't generate any errors, if cookie does not exist.
+			var isRemoved = $.removeCookie(cookieName);
+			if (isRemoved)
+				log('Cookie ' + cookieName + ' has been removed.');
+			else
+				log('Cookie ' + cookieName + ' not removed.');
+		}
+
 </script>
 
 <!--

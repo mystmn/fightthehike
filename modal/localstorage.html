@@ -54,24 +54,29 @@
         */
 
         if (localStorage) {
+            setTimeout(function() {
+            $('#myModal').modal(options);
 
+            }, 1000);
+            var options = {
+                "backdrop" : "static",
+                "keyboard" : "true"
+            }
             if(localStorage.name) {
                 $("#name").val(localStorage.name);
-
-            }else{
-
-                $("input[type=text]").change(function(){
-                    window.localStorage.clear();
-                    $this = $(this);
-                    localStorage[$this.attr("name")] = $this.val();
-                });
-
-                $('#clearsubmit').click( function() {
-                    window.localStorage.clear();
-                    localStorage.setItem('notInterested', 'True');
-                    location.reload();
-                });
             }
+
+            $("input[type=text]").change(function(){
+                window.localStorage.clear();
+                $this = $(this);
+                localStorage[$this.attr("name")] = $this.val();
+            });
+
+            $('#clearsubmit').click( function() {
+                window.localStorage.clear();
+                localStorage.setItem('notInterested', 'True');
+                location.reload();
+            });
         }
     });
 </script>
