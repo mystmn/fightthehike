@@ -12,6 +12,52 @@
         margin-bottom: 10px;
     }
     </style>
+    <script>
+    $(function () {
+        $('form').on('submit', function (e) {
+            $('#myModal').modal('hide');
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                crossDomain: true,
+                url: 'https://docs.google.com/forms/d/e/1FAIpQLSfwFEDrdbf7FHEwDscuuti4YBYd0Me4BRRdr6A3ps6Qgx9X0w/formResponse',
+                data: $('form').serialize(),
+            });
+        });
+    });
+    </script>
+    <script>
+    $(document).ready(function () {
+        /*
+        * Check browser supports local storage
+        */
+        if(localStorage.getItem('entry.1579321015') || localStorage.getItem('notInterested')) {
+            $('#name').html(localStorage.getItem('entry.1579321015'));
+        }else{
+
+            if (localStorage) {
+                setTimeout(function() {
+                    $('#myModal').modal(options);
+                }, 1000);
+                var options = {
+                    "backdrop" : "static",
+                    "keyboard" : "true"
+                }
+
+                $("input[type=text]").change(function(){
+                    $this = $(this);
+                    localStorage[$this.attr("name")] = $this.val();
+                });
+
+                $('#non-submit').click( function() {
+                    window.localStorage.clear();
+                    localStorage.setItem('notInterested', 'True');
+                    location.reload();
+                });
+            }
+        }
+    });
+    </script>
     <!-- End Custom -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     {.if template.mobileStylesEnabled}
@@ -28,6 +74,64 @@
     <div id="sidecarNav">
       <squarespace:navigation navigationId="mainNav" template="mobile-navigation" />
     </div>
+    <div class="modalContent">
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" id="non-submit" data-dismiss="modal" aria-hidden="true">×
+                    </button>
+                    <h4 class="modal-title">Sign up to help Fight The Hikes!</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- http://www.posttestserver.com/ -->
+                    <form class="form-horizontal" accept-charset="UTF-8">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <input class="form-control" type="text" placeholder="First Name" id="fNameInput"
+                                       name="entry.1579321015"
+                                       required>
+                            </div>
+                            <div class="col-sm-6">
+                                <input class="form-control" type="text" placeholder="Last Name" id="lNameInput"
+                                       name="entry.121634923"
+                                       required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <input class="form-control" type="email" placeholder="Email" id="inputEmail"
+                                       name="entry.545948816"
+                                       data-error="That email address is invalid" required>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <input class="form-control" type="text" placeholder="Street" name="entry.1395765579"
+                                       required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <input class="form-control" type="text" placeholder="City" name="entry.1503294338" required>
+                            </div>
+                            <div class="col-sm-3">
+
+                                <input class="form-control" type="text" placeholder="State" name="entry.178412944" required>
+                            </div>
+                            <div class="col-sm-3">
+
+                                <input class="form-control" type="text" placeholder="Zipcode" name="entry.114539019" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Sign Up</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     <div id="siteWrapper" class="clearfix">
 
       <div class="sqs-cart-dropzone"></div>
@@ -242,78 +346,5 @@
     <squarespace:script src="sticky.js" combo="true" />
     {.if authenticatedAccount}<squarespace:script src="authenticated.js" combo="false" />{.end}
     {squarespace-footers}
-
-    <!-- Custom Code -->
-        <div id="myModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title">Sign up to help Fight The Hikes!</h4>
-                    </div>
-                    <div class="modal-body">
-                        <!-- http://www.posttestserver.com/ -->
-                        <form action="http://posttestserver.com/post.php?" method="POST" role="form" class="form-horizontal">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <input class="form-control" type="text" placeholder="First Name" name="fNameInput"
-                                           required>
-                                </div>
-                                <div class="col-sm-6">
-                                    <input class="form-control" type="text" placeholder="Last Name" name="lNameInput" required>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-8">
-                                    <input type="email" class="form-control" name="inputEmail" placeholder="Email"
-                                           data-error="That email address is invalid" required>
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <input class="form-control" type="text" placeholder="Street" name="streetInput" required>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <input class="form-control" type="text" placeholder="City" name="cityInput" required>
-                                </div>
-                                <div class="col-sm-3">
-
-                                    <input class="form-control" type="text" placeholder="State" name="stateInput" required>
-                                </div>
-                                <div class="col-sm-3">
-
-                                    <input class="form-control" type="text" placeholder="Zipcode" name="zipInput" required>
-                                </div>
-                            </div>
-                            <div class="row" style="padding: 0 12px 0 12px;">
-                                <p><b>Disclaimer</b>: We promise we will NEVER share your information with outside parties. We
-                                    will
-                                    only
-                                    use your
-                                    information to send you alerts on how you can use your voice to stop the bailouts from the
-                                    big
-                                    utilities and help keep electricity rates low. By signing up you agree that the Alliance for
-                                    Energy
-                                    Choice has permission to send you these updates from time to time.</p>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Sign Up</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <script type="text/javascript">
-        setTimeout(function() {
-            $('#myModal').modal(options);
-        }, 1000);
-        var options = {
-            "backdrop" : "static",
-            "keyboard" : "true"
-        }
-        </script>
-    <!-- End Custom -->
   </body>
 </html>
